@@ -132,7 +132,8 @@ M.defaults = {
   },
   ["@constant.builtin"] = {
     default = true,
-    link = "Special",
+    -- link = "Special",
+    link = "Constant",
   },
   ["@constant.macro"] = {
     default = true,
@@ -283,7 +284,7 @@ M.defaults = {
   },
   ["@tag"] = {
     default = true,
-    link = "Label",
+    link = "Tag",
   },
   ["@tag.attribute"] = {
     default = true,

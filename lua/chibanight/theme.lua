@@ -23,9 +23,14 @@ function M.setup()
   }
 
   local c = theme.colors
+  c.cyan = util.darken("#5DE4C7", 0.9)
+  -- c.blue8 = "#7aa2f7"
+  c.blue8 = "#ADD7FF"
+  c.white = "#FFFFFF"
+  c.fg2 = "#A6ACCD"
 
   theme.highlights = {
-    Foo = { bg = c.magenta2, fg = c.magenta2 },
+    Foo = { bg = c.comment, fg = c.magenta2 },
 
     Comment = { fg = c.comment, style = options.styles.comments }, -- any comment
     ColorColumn = { bg = c.black }, -- used for the columns set with 'colorcolumn'
@@ -97,7 +102,7 @@ function M.setup()
     -- Uncomment and edit if you want more specific syntax highlighting.
 
     Constant = { fg = c.orange }, -- (preferred) any constant
-    String = { fg = c.green }, --   a string constant: "this is a string"
+    String = { fg = util.darken(c.magenta, 0.9) }, --   a string constant: "this is a string"
     Character = { fg = c.green }, --  a character constant: 'c', '\n'
     -- Number        = { }, --   a number constant: 234, 0xff
     -- Boolean       = { }, --  a boolean constant: TRUE, false
@@ -107,28 +112,29 @@ function M.setup()
     Function = { fg = c.blue, style = options.styles.functions }, -- function name (also: methods for classes)
 
     Statement = { fg = c.magenta }, -- (preferred) any statement
-    -- Conditional   = { }, --  if, then, else, endif, switch, etc.
+    ["@conditional.ternary"] = { fg = c.orange },
+    Conditional = { fg = c.blue5 }, --  if, then, else, endif, switch, etc.
     -- Repeat        = { }, --   for, do, while, etc.
     -- Label         = { }, --    case, default, etc.
     Operator = { fg = c.blue5 }, -- "sizeof", "+", "*", etc.
     Keyword = { fg = c.cyan, style = options.styles.keywords }, --  any other keyword
-    -- Exception     = { }, --  try, catch, throw
+    Exception = { fg = c.red }, --  try, catch, throw
 
-    PreProc = { fg = c.cyan }, -- (preferred) generic Preprocessor
+    PreProc = { fg = c.cyan, italic = true }, -- (preferred) generic Preprocessor
     -- Include       = { }, --  preprocessor #include
     -- Define        = { }, --   preprocessor #define
     -- Macro         = { }, --    same as Define
     -- PreCondit     = { }, --  preprocessor #if, #else, #endif, etc.
 
-    Type = { fg = c.blue1 }, -- (preferred) int, long, char, etc.
+    Type = { fg = c.blue8 }, -- blue1 }, -- (preferred) int, long, char, etc.
     -- StorageClass  = { }, -- static, register, volatile, etc.
     -- Structure     = { }, --  struct, union, enum, etc.
     -- Typedef       = { }, --  A typedef
 
     Special = { fg = c.blue1 }, -- (preferred) any special symbol
     -- SpecialChar   = { }, --  special character in a constant
-    -- Tag           = { }, --    you can use CTRL-] on this
-    -- Delimiter     = { }, --  character that needs attention
+    Tag = { fg = c.cyan }, --    you can use CTRL-] on this
+    Delimiter = { fg = c.white }, --  character that needs attention
     -- SpecialComment= { }, -- special things inside a comment
     Debug = { fg = c.orange }, --    debugging statements
 
@@ -221,26 +227,27 @@ function M.setup()
 
     --- Functions
     ["@constructor"] = { fg = c.magenta }, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
-    ["@parameter"] = { fg = c.yellow }, -- For parameters of a function.
+    ["@parameter"] = { fg = util.lighten(c.fg, 0.8), italic = true }, -- For parameters of a function.
     -- TODO:
     -- ["@parameter.builtin"] = {}, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
 
     --- Keywords
-    ["@keyword"] = { fg = c.purple, style = options.styles.keywords }, -- For keywords that don't fall in previous categories.
+    ["@keyword"] = { fg = c.blue5, style = options.styles.keywords }, -- For keywords that don't fall in previous categories.
     -- TODO:
     -- ["@keyword.coroutine"] = { }, -- For keywords related to coroutines.
-    ["@keyword.function"] = { fg = c.magenta, style = options.styles.functions }, -- For keywords used to define a fuction.
+    -- ["@keyword.function"] = { fg = c.magenta, style = options.styles.functions }, -- For keywords used to define a fuction.
+    ["@keyword.function"] = { fg = c.blue5, style = options.styles.functions }, -- For keywords used to define a fuction.
 
     ["@label"] = { fg = c.blue }, -- For labels: `label:` in C and `:label:` in Lua.
 
     --- Types
     ["@type.builtin"] = { fg = util.darken(c.blue1, 0.8) },
     ["@field"] = { fg = c.green1 }, -- For fields.
-    ["@property"] = { fg = c.green1 },
+    ["@property"] = { fg = c.fg }, -- c.green1 },
 
     --- Identifiers
     ["@variable"] = { fg = c.fg, style = options.styles.variables }, -- Any variable name that does not have another highlight.
-    ["@variable.builtin"] = { fg = c.red }, -- Variable names that are defined by the languages, like `this` or `self`.
+    ["@variable.builtin"] = { fg = c.orange }, -- Variable names that are defined by the languages, like `this` or `self`.
 
     --- Text
     -- ["@text.literal.markdown"] = { fg = c.blue },
@@ -611,7 +618,7 @@ function M.setup()
     NavicSeparator = { fg = c.fg, bg = c.none },
 
     IndentBlanklineChar = { fg = c.fg_gutter, nocombine = true },
-    IndentBlanklineContextChar = { fg = c.purple, nocombine = true },
+    IndentBlanklineContextChar = { fg = c.magenta, nocombine = true },
 
     -- Scrollbar
     ScrollbarHandle = { fg = c.none, bg = c.bg_highlight },
