@@ -33,7 +33,7 @@ function M.setup()
     Foo = { bg = c.comment, fg = c.magenta2 },
 
     Comment = { fg = c.comment, style = options.styles.comments }, -- any comment
-    ColorColumn = { bg = c.black }, -- used for the columns set with 'colorcolumn'
+    ColorColumn = { bg = c.bg_highlight }, -- used for the columns set with 'colorcolumn'
     Conceal = { fg = c.dark5 }, -- placeholder characters substituted for concealed text (see 'conceallevel')
     Cursor = { fg = c.bg, bg = c.fg }, -- character under the cursor
     lCursor = { fg = c.bg, bg = c.fg }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
@@ -126,7 +126,8 @@ function M.setup()
     -- Macro         = { }, --    same as Define
     -- PreCondit     = { }, --  preprocessor #if, #else, #endif, etc.
 
-    Type = { fg = c.blue8 }, -- blue1 }, -- (preferred) int, long, char, etc.
+    -- Type = { fg = c.blue8 }, -- blue1 }, -- (preferred) int, long, char, etc.
+    Type = { fg = c.cyan, underline = true }, -- blue1 }, -- (preferred) int, long, char, etc.
     -- StorageClass  = { }, -- static, register, volatile, etc.
     -- Structure     = { }, --  struct, union, enum, etc.
     -- Typedef       = { }, --  A typedef
@@ -134,7 +135,8 @@ function M.setup()
     Special = { fg = c.blue1 }, -- (preferred) any special symbol
     -- SpecialChar   = { }, --  special character in a constant
     Tag = { fg = c.cyan }, --    you can use CTRL-] on this
-    Delimiter = { fg = c.white }, --  character that needs attention
+    -- ["@tag"] = { fg = util.darken(c.cyan, 0.8) },
+    Delimiter = { fg = c.fg }, --  character that needs attention
     -- SpecialComment= { }, -- special things inside a comment
     Debug = { fg = c.orange }, --    debugging statements
 

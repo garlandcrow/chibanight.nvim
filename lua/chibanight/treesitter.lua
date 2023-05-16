@@ -293,6 +293,7 @@ M.defaults = {
   ["@tag.delimiter"] = {
     default = true,
     link = "Delimiter",
+    -- link = "Tag",
   },
   ["@text"] = {
     default = true,
