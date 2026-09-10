@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Project Overview
+
+- this is a neovim colorsheme file using lush.nvim
+- here is how we can extend the and use lush [extend.md](mdc:docs/extend.md)
+- here is a reference theme [reference.lua](mdc:lua/lush_theme/reference.lua)
